@@ -3,7 +3,7 @@ from flask.ext.script import Manager
 from flask import Flask
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://suraj:wilshere10@localhost/login'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://root:@localhost/login'
 db = SQLAlchemy(app)
 
 manager = Manager(app)
@@ -15,7 +15,7 @@ class RegisterUser(db.Model):
 	user_id = db.Column(db.Integer, primary_key = True)
 	email = db.Column(db.String)
 	password = db.Column(db.String)
-	profile_pic = db.Column(db.LargeBinary)
+	profile_pic = db.Column(db.String)
 
 	def __init__(self, email, password, profile_pic):
 		self.email = email
