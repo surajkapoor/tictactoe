@@ -103,12 +103,6 @@ def move(state):
 			MOVES["SETUP"] = [each]
 		elif x == 1 and n == 2 and "SETUP" in MOVES:
 			MOVES["SETUP"].append(each)	
-		'''	
-		elif x == 1 and o == 1 and n == 1 and "NEUTRAL" not in MOVES:
-			MOVES["NEUTRAL"] = [each]
-		elif x == 1 and o == 1 and n == 1 and "NEUTRAL" in MOVES:
-			MOVES["NEUTRAL"].append(each)		
-		'''	
 	return analyze(MOVES, state)		
 
 def first_move(state):
