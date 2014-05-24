@@ -1,6 +1,6 @@
 tictactoe
 =========
 
-Play [Play Tic Tac Toe](http://playtictac.herokuapp.com) against my algorithm! An AJAX / JQuery interface, gaming algorithm is in Python. 
+Play [Tic Tac Toe](http://playtictac.herokuapp.com) against a super-computer algorithm! App has an AJAX / JQuery interface and the gaming algorithm is written in Python.
 
 Click on the grid to start a game.
