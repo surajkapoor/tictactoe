@@ -1,0 +1,90 @@
+<html>
+<head>
+	<script type="text/javascript" src= "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+	<link rel = "stylesheet" type = "text/css" href = {{ url_for("static", filename = "style.css") }}/>
+</head>
+	<table >
+	  <tr >
+	  	<td id = "top_left_cell">	
+	  		<div id = "top_left" class = "grid" name = "top_left"></div>
+	  	</td>
+	  	<td id = "top_middle_cell">
+	  		<div id = "top_middle" class = "grid" name = "top_middle"></div>
+	  	</td>
+	  	<td id = "top_right_cell"> 
+	  		<div id = "top_right" class = "grid" name = "top_right"></div>
+	  	</td>
+	  </tr>
+	  <tr>
+	  	<td id = "middle_left_cell">
+	  		<div id = "middle_left" class = "grid" name = "middle_left"></div>
+	  	</td>
+	  	<td id = "middle_cell">
+	  		<div id = "middle_middle" class = "grid" name = "middle_middle"></div>
+	  	</td>
+	  	<td id = "middle_right_cell">
+	  		<div id = "middle_right" class = "grid" name = "middle_right"></div>
+	  	</td>
+	  </tr>
+	  <tr>
+	  	<td id = "bottom_left_cell">
+	  		<div id = "bottom_left" class = "grid" name = "bottom_left"></div>
+	  	</td>
+	  	<td id = "bottom_middle_cell">
+	  		<div id = "bottom_middle" class = "grid" name = "bottom_middle"></div>
+	  	</td>
+	  	<td id = "bottom_right_cell">
+	  		<div id = "bottom_right" class = "grid" name = "bottom_right"></div>
+	  	</td>
+	  </tr>
+	</table>  
+<p id = "announce_winner"></p>
+<p id = "start_game">CLICK ON THE GRID TO START A GAME</p>
+
+
+
+<script>
+$(document).ready(function(){
+	 $(".grid").bind("click", function(data, status){
+	 	$(this).html("X").css("color", "red");
+	 	$("#start_game").remove()
+	 	var state = {
+	 		top_left : $("#top_left").text(), 
+	 		top_middle : $("#top_middle").text(), 
+	 		top_right : $("#top_right").text(), 
+	 		middle_left : $("#middle_left").text(), 
+	 		middle_middle : $("#middle_middle").text(), 
+	 		middle_right : $("#middle_right").text(), 
+	 		bottom_left : $("#bottom_left").text(),
+	 		bottom_middle : $("#bottom_middle").text(),
+	 		bottom_right : $("#bottom_right").text()}
+	 	$.get("/score", state, function(value){
+	 		console.log(value)
+	 		console.log(value.result)
+	 		$("#top_left").html(value.result[0]);
+	 		$("#top_middle").html(value.result[1]);
+	 		$("#top_right").html(value.result[2]);
+	 		$("#middle_left").html(value.result[3]);
+	 		$("#middle_middle").html(value.result[4]);
+	 		$("#middle_right").html(value.result[5]);
+	 		$("#bottom_left").html(value.result[6]);
+	 		$("#bottom_middle").html(value.result[7]);
+	 		$("#bottom_right").html(value.result[8]);
+	 		if (value.result.length === 10){
+	 			console.log(value.result[9]);
+	 			$("#announce_winner").html(value.result[9][0]);
+	 			var grid = ["#top_left", "#top_middle", "#top_right", "#middle_left", "#middle_middle", "#middle_right", "#bottom_left", "#bottom_middle", "#bottom_right"]
+	 			for (each in value.result[9][1]){
+	 				$(grid[value.result[9][1][each]]).css("background-color", "green")
+
+	 			}
+	 		};
+
+	 	});
+	 });
+ });
+</script>
+
+
+</html>
+
