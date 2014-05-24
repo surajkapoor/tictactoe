@@ -1,0 +1,81 @@
+<html>
+<head>
+<script type="text/javascript" src= "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+<style>
+table,th,td
+{
+border:1px solid black;
+border-collapse:collapse;
+}
+</style>
+<form>
+	<input id = "entered_string" name = "string">
+	<input type = "button" value = "submit" id = "submit_button">
+</form>
+
+<div id = "result">?</div>
+
+<script>
+$("#submit_button").bind("click", function(data, status){
+	
+	//console.log(string)
+	console.log(data)
+	console.log(status)
+	$.get('/upper_case', {string: $("#entered_string").val()}, function(string){
+		console.log(string)
+		$("#result").text(string.result)
+		})
+    })
+</script>
+
+<form>
+	<input id = "mult1" class = "mult" name = "mult1" value = 0><span>*<input id = "mult2" class = "mult" name = "mult2" value = 0><span>=</span><span id = "mult_result"></span>
+</form>
+<script>
+$(".mult").on("input", function(data, status){
+	var obj = {
+		mult1: $("#mult1").val(), 
+		mult2: $("#mult2").val()}
+	$.get('/mult', obj, function(value){
+		console.log(value)
+		$("#mult_result").text(value.result)
+	})
+})	
+</script>
+
+<form>
+	<input id = "div1" class = "div" name = "div1" value = 0><span>/<input id = "div2" class = "div" name = "div2" value = 0><span>=</span><span id = "div_result"></span>
+</form>
+<script>
+$(".div").on("input", function(data, status){
+	var div1 = $("#div1").val()
+	var div2 = $("#div2").val()
+	var result = div1 / div2
+	console.log(result)
+	$("#div_result").text(result)
+})
+
+
+</script>
+
+
+  <table>
+    <th>
+      <tr>
+      	<td>a</td>
+      	<td>b</td>
+      	<td>c</td>
+      </tr>
+      <tr>
+      	<td>d</td>
+      	<td>e</td>
+      	<td>f</td>
+      </tr>
+      <tr>
+      	<td>g</td>
+      	<td>h</td>
+      	<td>i</td>
+      </tr>
+  </table>   
+</html>
+
